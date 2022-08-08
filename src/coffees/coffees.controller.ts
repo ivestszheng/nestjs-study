@@ -1,7 +1,7 @@
 /*
  * @Descripttion:
  * @Date: 2022-08-07 22:01:29
- * @LastEditTime: 2022-08-07 23:05:09
+ * @LastEditTime: 2022-08-08 14:21:14
  */
 import {
   Controller,
@@ -14,14 +14,22 @@ import {
   Res,
   Patch,
   Delete,
+  Query,
 } from '@nestjs/common';
 
 @Controller('coffees')
 export class CoffeesController {
+  // @Get()
+  // findAll() {
+  //   // 方法名称无关紧要
+  //   return 'This action returns all coffees';
+  // }
+
   @Get()
-  findAll() {
-    // 方法名称无关紧要
-    return 'This action returns all coffees';
+  findAll(@Query() pginationQuerry) {
+    const { limit, offset } = pginationQuerry;
+
+    return `This action returns all coffees. Limit: ${limit}, Offset: ${offset}`;
   }
 
   // @Get()
