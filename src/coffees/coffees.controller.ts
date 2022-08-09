@@ -1,7 +1,7 @@
 /*
  * @Descripttion:
  * @Date: 2022-08-07 22:01:29
- * @LastEditTime: 2022-08-08 14:21:14
+ * @LastEditTime: 2022-08-09 10:55:45
  */
 import {
   Controller,
@@ -16,9 +16,13 @@ import {
   Delete,
   Query,
 } from '@nestjs/common';
+import { CoffeesService } from './coffees.service';
+import { CreateCoffeeDto } from './dto/create-coffee.dto';
+import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
 @Controller('coffees')
 export class CoffeesController {
+  constructor(private readonly coffeesService: CoffeesService) {}
   // @Get()
   // findAll() {
   //   // 方法名称无关紧要
@@ -27,9 +31,8 @@ export class CoffeesController {
 
   @Get()
   findAll(@Query() pginationQuerry) {
-    const { limit, offset } = pginationQuerry;
-
-    return `This action returns all coffees. Limit: ${limit}, Offset: ${offset}`;
+    // const { limit, offset } = pginationQuerry;
+    return this.coffeesService.findAll();
   }
 
   // @Get()
@@ -41,18 +44,18 @@ export class CoffeesController {
   // }
 
   //   @Get(':id')
-  //   findById(@Param() params) {
+  //   findOne(@Param() params) {
   //     return `This action returns ${params.id} coffee`;
   //   }
 
   @Get(':id')
-  findById(@Param('id') id: string) {
-    return `This action returns ${id} coffee`;
+  findOne(@Param('id') id: string) {
+    return this.coffeesService.findOne(id);
   }
 
   @Post()
-  create(@Body() body) {
-    return body;
+  create(@Body() createCoffeeDto: CreateCoffeeDto) {
+    return this.coffeesService.create(createCoffeeDto);
   }
 
   // 这样只会返回传参对象的 name 属性
@@ -68,12 +71,12 @@ export class CoffeesController {
   // }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() body) {
-    return `This action updates #${id} coffee`;
+  update(@Param('id') id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
+    return this.coffeesService.update(id, updateCoffeeDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return `This action removes #${id} coffee`;
+    return this.coffeesService.remove(id);
   }
 }
