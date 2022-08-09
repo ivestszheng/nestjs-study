@@ -1,9 +1,10 @@
+import { CreateCoffeeDto } from './dto/create-coffee.dto';
 /*
  * @Descripttion: 用来处理业务逻辑
  * @Author: 无声<ivestszheng@qq.com>
  * @Date: 2022-08-08 14:28:42
  * @LastEditors: 无声<ivestszheng@qq.com>
- * @LastEditTime: 2022-08-09 10:55:17
+ * @LastEditTime: 2022-08-09 14:19:40
  */
 import {
   HttpException,
@@ -37,7 +38,9 @@ export class CoffeesService {
   }
 
   create(createCoffeeDto: any) {
+    console.log(createCoffeeDto instanceof CreateCoffeeDto);
     this.coffees.push(createCoffeeDto);
+    return createCoffeeDto;
   }
 
   update(id: string, updateCoffeeDto: any) {

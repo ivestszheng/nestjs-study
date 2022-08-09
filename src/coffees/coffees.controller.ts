@@ -1,7 +1,7 @@
 /*
  * @Descripttion:
  * @Date: 2022-08-07 22:01:29
- * @LastEditTime: 2022-08-09 10:55:45
+ * @LastEditTime: 2022-08-09 14:28:05
  */
 import {
   Controller,
@@ -49,8 +49,9 @@ export class CoffeesController {
   //   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.coffeesService.findOne(id);
+  findOne(@Param('id') id: number) {
+    console.log(typeof id);
+    return this.coffeesService.findOne('' + id);
   }
 
   @Post()

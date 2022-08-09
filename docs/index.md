@@ -25,3 +25,36 @@ DTO: data transfer object
 ```
 nest g class coffees/dto/create-coffee.dto --no-spec
 ```
+
+使用规则校验
+
+```typescript
+// main.ts
+import { ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new ValidationPipe());
+  await app.listen(3000);
+  console.log('Server listening on http://localhost:3000');
+}
+bootstrap();
+
+```
+
+为使用规则校验还需安装两个包
+
+```bash
+npm i class-validator class-transformer
+```
+
+简化 dto 复制流程
+
+```bash
+npm i @nestjs/mapped-types
+```
+
+
+
