@@ -64,3 +64,16 @@ npm i @nestjs/mapped-types
 
 ## 安装 docker
 
+win10 家庭版需要先安装 Virtual-V
+
+## 启动 docker
+```
+docker-compose up -d
+```
+
+`-d`意味着分离模式
+
+## 安装 typeorm 及相关依赖
+```
+npm i @nestjs/typeorm typeorm@0.2.45 pg
+```

@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    ports:
+    # 向 docker 表明，在容器内它应该在5432上设置数据库，
+    # 5432 是 postgreSQL 的默认端口cw
+    # 但也可以在同一端口上访问 docker 外部
+      - "5432:5432" 
+    environment:
+      POSTGRES_PASSWORD: root
